@@ -1,6 +1,6 @@
 {
   "name": "kor-bin-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "카드 bin 밸리데이터",
   "main": "index.js",
   "scripts": {

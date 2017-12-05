@@ -10,21 +10,25 @@ function checkLuhn(num) {
    var numArray = num.split('');
    var checkDigit = numArray[numArray.length - 1];
    var sum = 0;
-
+   var parity = numArray.length % 2;
+   
    numArray.forEach((digit, i) => {
         // 마지막 자리는 계산하지 않음
         if (i == numArray.length - 1) return;
 
-        if (i%2) {  // 짝수
+        if (i%2 != parity) {  // 짝수
             sum += parseInt(digit);
         } else {    // 홀수
             let twice = parseInt(digit) * 2;
             if (twice > 9) {
-                twice = twice % 10 + 1;
+                twice = twice - 9;
             }
             sum += twice;
         }
    });
+
+   console.log('sum', sum);
+   console.log('checkDigit', checkDigit);
 
    return sum * 9 % 10 == parseInt(checkDigit);
 }
@@ -52,12 +56,13 @@ function validate(param) {
         return validateResult(false, '자리수가 맞지 않습니다.');
     }
 
-    // 5. luhn 검증
-    if (!checkLuhn(num)) {
-        return validateResult(false, '잘못된 카드번호입니다.');
-    }
 
     const information = getInformation(num);
+
+    // 5. luhn 검증
+    if (!checkLuhn(num)) {
+        return validateResult(false, '잘못된 카드번호입니다.', information);
+    }
 
     
     return validateResult(true, '올바른 카드번호입니다.', information);
