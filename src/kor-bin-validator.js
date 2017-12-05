@@ -68,8 +68,6 @@ function getInformation(param) {
     // https://www.kicc.co.kr/kr/support/pds/van/pds_van_list.jsp?s_menu=4&t_menu=1
     const binData = require('./bin-data.json');
 
-    console.log('param', param);
-
     const informationRow = binData.find(o => {
         return param.indexOf(o[1]) === 0;
     });
