@@ -11,7 +11,6 @@ describe('성공 테스트', function(){
     var actual = result.valid;
 
     it('올바른 카드번호 [' + num + '] 입니다. \n정보 : ' + JSON.stringify(result.information), function(){
-
         expect(actual).to.equal(expected);
     });
 })

@@ -27,9 +27,6 @@ function checkLuhn(num) {
         }
    });
 
-   console.log('sum', sum);
-   console.log('checkDigit', checkDigit);
-
    return sum * 9 % 10 == parseInt(checkDigit);
 }
 
@@ -56,13 +53,13 @@ function validate(param) {
         return validateResult(false, '자리수가 맞지 않습니다.');
     }
 
-
-    const information = getInformation(num);
-
     // 5. luhn 검증
     if (!checkLuhn(num)) {
-        return validateResult(false, '잘못된 카드번호입니다.', information);
+        return validateResult(false, '잘못된 카드번호입니다.');
     }
+
+    // 6. BIN 체크
+    const information = getInformation(num);
 
     
     return validateResult(true, '올바른 카드번호입니다.', information);
